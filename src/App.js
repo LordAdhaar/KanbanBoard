@@ -10,26 +10,59 @@ function App() {
   const [tickets,setTickets] = useState(data.tickets)
   const [users, setUsers] = useState(data.users)
 
-  function sortByStatus(){
-    console.log(tickets)
+  const [showStatus, setShowStatus] = useState(true)
+  const [showUser, setShowUser] = useState(false)
+  const [showPriority, setShowPriority] = useState(false)
+ 
+  const [byPriority, setByPriority] = useState(true)
+  const [byTitle, setByTitle] = useState(false)
+
+
+  function handleStatus(){
+    setShowStatus(true)
+    setShowUser(false)
+    setShowPriority(false)
+  }
+
+  function handleUser(){
+    setShowStatus(false)
+    setShowUser(true)
+    setShowPriority(false)
+  }
+  
+  function handlePriority(){
+    setShowStatus(false)
+    setShowUser(false)
+    setShowPriority(true)
+  } 
+
+  function handleByPriority(){
+    setByPriority(true)
+    setByTitle(false)
+  }
+
+  function handleByTitle(){
+    setByPriority(false)
+    setByTitle(true)
   }
 
   return (
     <div className="App">
       <div className="navbar">
             <div className="grouping">
-                <button onClick={sortByStatus}>Status</button>
-                <button>User</button>
-                <button>Priority</button>
+                <button onClick={handleStatus}>Status</button>
+                <button onClick={handleUser}>User</button>
+                <button onClick={handlePriority}>Priority</button>
             </div>
-            <div className="priority">
-                <button>Priority</button>
-                <button>Title</button>
+            <div className="sorting">
+                <button onClick={handleByPriority}>Priority</button>
+                <button onClick={handleByTitle}>Title</button>
             </div>
         </div>
-      <Status tickets = {tickets}/>
-      <User users = {users} tickets = {tickets}/>
-      <Priority tickets = {tickets}/>
+
+      {showStatus && <Status tickets = {tickets} byPriority = {byPriority} byTitle = {byTitle}/>}
+      {showUser && <User users = {users} tickets = {tickets} byPriority = {byPriority} byTitle = {byTitle}/>}
+      {showPriority && <Priority tickets = {tickets} byPriority = {byPriority} byTitle = {byTitle}/>}
 
     </div>
   );

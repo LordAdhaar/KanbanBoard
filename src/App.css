@@ -1,14 +1,168 @@
 .App {
-  background-color: #282c34;
+  background-color: lightgrey;
   min-height: 100vh;
   font-size: calc(10px + 2vmin);
   color: white;
+  padding: 10px;
 }
 
 ul{
   list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+.StatusPage h1{
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 16px;
+  margin: 20px 0px;
+  color: black;
+  font-weight: 400;
+}
+
+.StatusPage{
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
+  gap: 32px;
+}
+
+.StatusPage .header, .PriorityPage .header{
+  color: black;
+  display: flex;
+  justify-content: space-between;
+}
+
+.StatusPage .headerleft, .PriorityPage .headerLeft{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap:12px;
+
+}
+
+.StatusPage .headerRight, .PriorityPage .headerRight{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.StatusPage ul{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.userTickets{
+  padding-left: 0px;
+}
+
+.PriorityPage{
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
 }
 
 .ticket{
-  border :1px solid white
+  background: white;
+  color:black;
+  padding: 12px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-radius: 8px;
+}
+
+.ticketID{
+  color: grey;
+  margin: 0px;
+  font-size: 16px;
+}
+
+.ticketTitle{
+  font-size: 16px;
+  margin: 0px;
+  display: flex;
+  align-items: flex-start;
+  gap:4px
+}
+
+.ticketDiv{
+  display: flex;
+  gap: 5px;
+  font-size: 12px;
+  color:grey
+}
+
+.ticketPri{
+  border: 1px solid grey;
+  margin: 0px;
+  padding: 2px;
+}
+
+.ticketTag{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  border: 1px solid grey;
+  margin: 0px;
+  padding: 2px;
+}
+
+.UserPage{
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
+  gap: 32px;
+}
+
+.userName{
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 16px;
+  margin: 20px 0px;
+  color: black;
+  font-weight: 400;
+  display: flex;
+  justify-content: space-between;
+}
+
+.userActions{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.userTickets{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  
+}
+
+.PriorityPage{
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
+  gap: 32px;  
+}
+
+.PriorityPage h1{
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 16px;
+  margin: 20px 0px;
+  color: black;
+  font-weight: 400;
+}
+
+.PriorityPage ul{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+
+.headerLeft p{
+  margin: 0px;
+  padding: 0px 4px;
+  font-size: 16px;
+  border: 1px solid ;
 }

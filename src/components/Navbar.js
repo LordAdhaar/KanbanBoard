@@ -76,7 +76,7 @@ export function Navbar({setShowStatus, setShowUser, setShowPriority, setByPriori
     return (
         <div className="navbar" style={{display:"flex", flexDirection:"column", gap:"12px"}}>
             <div>
-                <button onClick={()=>{setDisplay(!display)}} style={{display:"flex", alignItems:"center"}}>Display</button>
+                <button onClick={()=>{setDisplay(!display)}} style={{display:"flex", alignItems:"center"}} className="dispButton">Display</button>
             </div>
             {display && DropDown()}
         </div> 

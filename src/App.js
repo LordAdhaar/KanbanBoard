@@ -13,6 +13,13 @@ function App() {
   const [tickets, setTickets] = useState([])
   const [users, setUsers] = useState([])
 
+  const [showStatus, setShowStatus] = useState(true)
+  const [showUser, setShowUser] = useState(false)
+  const [showPriority, setShowPriority] = useState(false)
+
+  const [byPriority, setByPriority] = useState(true)
+  const [byTitle, setByTitle] = useState(false)
+
   useEffect(() => {
     fetch('https://api.quicksell.co/v1/internal/frontend-assignment')
       .then(response => response.json())
@@ -27,12 +34,31 @@ function App() {
       });
   }, []); 
 
-  const [showStatus, setShowStatus] = useState(true)
-  const [showUser, setShowUser] = useState(false)
-  const [showPriority, setShowPriority] = useState(false)
+  // Set the value of the SETTERS after refreshing the page
+  useEffect(() => {
 
-  const [byPriority, setByPriority] = useState(true)
-  const [byTitle, setByTitle] = useState(false)
+    setShowStatus(JSON.parse(window.localStorage.getItem("SHOW_STATUS_PAGE")))
+    setShowUser(JSON.parse(window.localStorage.getItem("SHOW_USER_PAGE")))
+    setShowPriority(JSON.parse(window.localStorage.getItem("SHOW_PRIORITY_PAGE")))
+    
+    setByPriority(JSON.parse(window.localStorage.getItem("SORT_BY_PRIORITY")))
+    setByTitle(JSON.parse(window.localStorage.getItem("SORT_BY_TITLE")))
+    
+    
+  }, [])
+  
+  // Store the value of the states in window.localStorage everytime their value is changed
+  useEffect(() => {
+    
+    window.localStorage.setItem("SHOW_STATUS_PAGE", JSON.stringify(showStatus))
+    window.localStorage.setItem("SHOW_USER_PAGE", JSON.stringify(showUser))
+    window.localStorage.setItem("SHOW_PRIORITY_PAGE", JSON.stringify(showPriority))
+
+    window.localStorage.setItem("SORT_BY_PRIORITY", JSON.stringify(byPriority))
+    window.localStorage.setItem("SORT_BY_TITLE", JSON.stringify(byTitle))
+
+  }, [showStatus, showUser, showPriority, byPriority, byTitle, byPriority, byTitle])
+  
 
   return (
     <div className="App">

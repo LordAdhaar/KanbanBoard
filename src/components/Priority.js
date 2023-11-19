@@ -8,7 +8,6 @@ import { PiCircleHalfFill as PiHalf} from "react-icons/pi";
 import { IoCheckmarkCircleSharp as IoCheck} from "react-icons/io5";
 
 export function Priority({tickets, byPriority, byTitle}){
-    console.log(tickets)
 
     if (byPriority){
       tickets.sort((a,b) => a.priority < b.priority ? -1 : 1)

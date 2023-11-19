@@ -1,15 +1,19 @@
 .App {
-  background-color: lightgrey;
+  background-color: #eaeaea;
   min-height: 100vh;
   font-size: calc(10px + 2vmin);
   color: white;
-  padding: 10px;
 }
 
 ul{
   list-style-type: none;
   margin: 0px;
   padding: 0px;
+}
+
+.navbar{
+  background: white;
+  padding: 12px;
 }
 
 .StatusPage h1{
@@ -24,6 +28,7 @@ ul{
   display: grid;
   grid-template-columns: repeat(5,1fr);
   gap: 32px;
+  padding: 0px 12px;
 }
 
 .StatusPage .header, .PriorityPage .header{
@@ -60,6 +65,7 @@ ul{
 .PriorityPage{
   display: grid;
   grid-template-columns: repeat(5,1fr);
+  padding: 0px 12px;
 }
 
 .ticket{
@@ -97,6 +103,7 @@ ul{
   border: 1px solid grey;
   margin: 0px;
   padding: 2px;
+  border-radius: 4px;
 }
 
 .ticketTag{
@@ -107,12 +114,14 @@ ul{
   border: 1px solid grey;
   margin: 0px;
   padding: 2px;
+  border-radius: 4px;
 }
 
 .UserPage{
   display: grid;
   grid-template-columns: repeat(5,1fr);
   gap: 32px;
+  padding: 0px 12px;
 }
 
 .userName{
@@ -165,4 +174,26 @@ ul{
   padding: 0px 4px;
   font-size: 16px;
   border: 1px solid ;
+}
+
+.grouping, .sorting{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.groupingButton button, .PriorityButton button{
+  border: 1px solid;
+  border-radius: 8px;
+  background: white;
+}
+
+
+.dropDown{
+  background: #eaeaea;
+  box-shadow: 0px 0px 6px 0px black;
+  border-radius: 8px;
+  padding: 12px;
+  position: absolute;
+  top: 7.1%;
 }

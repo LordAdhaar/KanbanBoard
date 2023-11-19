@@ -46,25 +46,62 @@ function App() {
     setByTitle(true)
   }
 
+  const [display, setDisplay] = useState(false)
+
+  function Grouping(){
+    return (
+      <div className="grouping">
+        <div className='groupingLabel'>
+          <p style={{margin:"0px", color:"black", padding:"0px", fontSize:"16px"}}>Grouping</p> 
+        </div>
+        <div className='groupingButton' style={{display:"flex", flexDirection:"row", gap:"8px"}}>
+          <button onClick={handleStatus}>Status</button>
+          <button onClick={handleUser}>User</button>
+          <button onClick={handlePriority}>Priority</button>
+        </div>
+        
+      </div>
+    )
+  }
+
+  function SortBy(){
+    return (
+        <div className="sorting">
+          <div className='PriorityLabel'>
+            <p style={{margin:"0px", color:"black", padding:"0px", fontSize:"16px"}}>Ordering</p>
+          </div>
+          <div className='PriorityButton' style={{display:"flex", flexDirection:"row", gap:"8px"}}>
+            <button onClick={handleByPriority}>Priority</button>
+            <button onClick={handleByTitle}>Title</button>
+          </div>
+          
+        </div>
+    )
+  }
+
+  function DropDown(){
+    return (
+      <div style={{display:"flex", flexDirection:"column", gap:"12px"}} className="dropDown">
+        {Grouping()}
+        {SortBy()}
+      </div>
+    )
+  }
+
   return (
     <div className="App">
-      <div className="navbar">
-            <div className="grouping">
-                <button onClick={handleStatus}>Status</button>
-                <button onClick={handleUser}>User</button>
-                <button onClick={handlePriority}>Priority</button>
-            </div>
-            <div className="sorting">
-                <button onClick={handleByPriority}>Priority</button>
-                <button onClick={handleByTitle}>Title</button>
-            </div>
+      <div className="navbar" style={{display:"flex", flexDirection:"column", gap:"12px"}}>
+          <div>
+            <button onClick={()=>{setDisplay(!display)}}>Display</button>
+          </div>
+            {display && DropDown()}
         </div>
 
-      {showStatus && <Status tickets = {tickets} byPriority = {byPriority} byTitle = {byTitle}/>}
-      {showUser && <User users = {users} tickets = {tickets} byPriority = {byPriority} byTitle = {byTitle}/>}
-      {showPriority && <Priority tickets = {tickets} byPriority = {byPriority} byTitle = {byTitle}/>}
 
-    </div>
+     {/* {showStatus && <Status tickets = {tickets} byPriority = {byPriority} byTitle = {byTitle}/>}
+      {showUser && <User users = {users} tickets = {tickets} byPriority = {byPriority} byTitle = {byTitle}/>}
+  {showPriority && <Priority tickets = {tickets} byPriority = {byPriority} byTitle = {byTitle}/>} */}
+  </div> 
   );
 }
 

@@ -9,6 +9,7 @@ import { IoCheckmarkCircleSharp as IoCheck} from "react-icons/io5";
 
 export function Priority({tickets, byPriority, byTitle}){
 
+    // Sort tickets by priority if the 'byPriority' flag is true, otherwise sort by title
     if (byPriority){
       tickets.sort((a,b) => a.priority < b.priority ? -1 : 1)
     }
@@ -16,24 +17,12 @@ export function Priority({tickets, byPriority, byTitle}){
       tickets.sort((a,b) => a.title < b.title ? -1 : 1)
     }
 
+    // Function to return the appropriate status icon based on the ticket's status
     function returnStatusIcon(status){
       return statusIconMap[status]
-  }
-  const statusIconMap = {
-      "Backlog": <MdOut style={{color:"black"}} size="20px"/>,
-      "Cancelled":<GiCan style={{color:"blue"}}size="20px"/>,
-      "Done": <IoCheck style={{color:"blue"}} size="20px"/>,
-      "In progress":<PiHalf style={{color:"#ff8900"}} size="20px"/>,
-      "Todo":<FaCirc style={{color:"black"}} size="16px"/>
+    }
 
-  }
-
-    const zero = tickets.filter((ticket) => ticket.priority === 0)
-    const one = tickets.filter((ticket) => ticket.priority === 1)
-    const two = tickets.filter((ticket) => ticket.priority === 2)
-    const three = tickets.filter((ticket) => ticket.priority === 3)
-    const four = tickets.filter((ticket) => ticket.priority === 4)
-
+    // Function to render a single ticket
     function renderTicket(ticket){
       return (
         <li key={ticket.id} className="ticket" >
@@ -47,6 +36,23 @@ export function Priority({tickets, byPriority, byTitle}){
       )
     }
 
+    // Map of status icons based on status value
+    const statusIconMap = {
+      "Backlog": <MdOut style={{color:"black"}} size="20px"/>,
+      "Cancelled":<GiCan style={{color:"blue"}}size="20px"/>,
+      "Done": <IoCheck style={{color:"blue"}} size="20px"/>,
+      "In progress":<PiHalf style={{color:"#ff8900"}} size="20px"/>,
+      "Todo":<FaCirc style={{color:"black"}} size="16px"/>
+    }
+
+    // Filter tickets based on priority value
+    const zero = tickets.filter((ticket) => ticket.priority === 0)
+    const one = tickets.filter((ticket) => ticket.priority === 1)
+    const two = tickets.filter((ticket) => ticket.priority === 2)
+    const three = tickets.filter((ticket) => ticket.priority === 3)
+    const four = tickets.filter((ticket) => ticket.priority === 4)
+
+    // Render the filtered tickets for each priority level
     const dispZero = zero.map(ticket => renderTicket(ticket))
     const dispOne = one.map(ticket => renderTicket(ticket))
     const dispTwo = two.map(ticket => renderTicket(ticket))
@@ -55,7 +61,7 @@ export function Priority({tickets, byPriority, byTitle}){
 
     return (
         <div className="PriorityPage">
-            
+               
             <div className="Zero">
                 <div className="header">
                   <div className="headerLeft">
@@ -138,6 +144,4 @@ export function Priority({tickets, byPriority, byTitle}){
             
         </div>
     )
-
-
 }

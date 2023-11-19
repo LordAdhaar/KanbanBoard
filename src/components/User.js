@@ -10,6 +10,7 @@ import { IoCheckmarkCircleSharp as IoCheck} from "react-icons/io5";
 export function User({users, tickets, byPriority, byTitle}){
     console.log(users, tickets)
 
+    // Sort tickets by priority if byPriority is true, otherwise sort by title
     if (byPriority){
         tickets.sort((a,b) => a.priority < b.priority ? -1 : 1)
     }
@@ -17,6 +18,7 @@ export function User({users, tickets, byPriority, byTitle}){
         tickets.sort((a,b) => a.title < b.title ? -1 : 1)
     }
 
+    // Function to return the corresponding status icon based on the status value
     function returnStatusIcon(status){
         return statusIconMap[status]
     }
@@ -26,9 +28,9 @@ export function User({users, tickets, byPriority, byTitle}){
         "Done": <IoCheck style={{color:"blue"}} size="20px"/>,
         "In progress":<PiHalf style={{color:"#ff8900"}} size="20px"/>,
         "Todo":<FaCirc style={{color:"black"}} size="16px"/>
-
     }
 
+    // Function to render a ticket
     function renderTicket(ticket){
         return (
             <li key={ticket.id} className="ticket" >
@@ -40,8 +42,9 @@ export function User({users, tickets, byPriority, byTitle}){
             </div>
         </li>
         )
-      }
+    }
 
+    // Map through the users and render their tickets
     const dispUsers = users.map(user => {
         return (
             <li key={user.id}>
@@ -58,15 +61,13 @@ export function User({users, tickets, byPriority, byTitle}){
                             return renderTicket(ticket)
                         }
                         return null
-                        
                     })}
                 </ul>
             </li>
         )
     })
 
-
-
+    // Return the rendered users and their tickets
     return (
         <div >
             <ul className="UserPage">
@@ -74,5 +75,4 @@ export function User({users, tickets, byPriority, byTitle}){
             </ul>
         </div>
     )
-
 }

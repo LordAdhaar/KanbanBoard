@@ -6,9 +6,11 @@ import { MdOutlinePendingActions } from "react-icons/md";
 import { GiCancel } from "react-icons/gi";
 import { PiCircleHalfFill } from "react-icons/pi";
 import { IoCheckmarkCircleSharp } from "react-icons/io5";
+import { render } from "@testing-library/react";
 
 export function Status({tickets, byPriority, byTitle}){
     
+    // Sort tickets by priority if the 'byPriority' flag is true, otherwise sort by title
     if (byPriority){
       tickets.sort((a,b) => a.priority < b.priority ? -1 : 1)
     }
@@ -16,53 +18,33 @@ export function Status({tickets, byPriority, byTitle}){
       tickets.sort((a,b) => a.title < b.title ? -1 : 1)
     }
 
+    // Render individual ticket components
+    function renderTicket(ticket){
+      return (
+        <li key={ticket.id} className="ticket" >
+            <p className="ticketID">{ticket.id}</p>
+            <p className="ticketTitle">{ticket.title}</p>
+            <div className="ticketDiv">
+              <p className="ticketPri">{ticket.priority}</p>
+              <p className="ticketTag"> <FaCircle/> {ticket.tag} </p>
+            </div>
+          </li>
+      )
+    }
+
+    // Filter tickets based on their status
     const backlogTickets = tickets.filter((ticket) => ticket.status === "Backlog")
     const cancelledTickets = tickets.filter((ticket) => ticket.status === "Cancelled")
     const doneTickets = tickets.filter((ticket) => ticket.status === "Done")
     const inProgTickets = tickets.filter((ticket) => ticket.status === "In progress")
     const todoTickets = tickets.filter((ticket) => ticket.status === "Todo")
-    
 
-    const dispBackTickets = backlogTickets.map(ticket => {
-        return (
-          <li key={ticket.id} className="ticket" >
-            <p className="ticketID">{ticket.id}</p>
-            <p className="ticketTitle">{ticket.title}</p>
-            <div className="ticketDiv">
-              <p className="ticketPri">{ticket.priority}</p>
-              <p className="ticketTag"> <FaCircle />
-{ticket.tag}</p>
-            </div>
-            
-          </li>
-        )
-    })
-    
-    const dispTodoTickets = todoTickets.map(ticket => {
-        return (
-          <li key={ticket.id} className="ticket" >
-            <p className="ticketID">{ticket.id}</p>
-            <p className="ticketTitle">{ticket.title}</p>
-            <div className="ticketDiv">
-              <p className="ticketPri">{ticket.priority}</p>
-              <p className="ticketTag"><FaCircle />{ticket.tag}</p>
-            </div>
-          </li>
-        )
-    })
-    
-    const dispInProgTickets = inProgTickets.map(ticket => {
-        return (
-          <li key={ticket.id} className="ticket" >
-            <p className="ticketID">{ticket.id}</p>
-            <p className="ticketTitle">{ticket.title}</p>
-            <div className="ticketDiv">
-              <p className="ticketPri">{ticket.priority}</p>
-              <p className="ticketTag"><FaCircle />{ticket.tag}</p>
-            </div>
-          </li>
-        )
-    })
+    // Render the filtered tickets
+    const dispBackTickets = backlogTickets.map(ticket => renderTicket(ticket))
+    const dispTodoTickets = todoTickets.map(ticket => renderTicket(ticket))
+    const dispInProgTickets = inProgTickets.map(ticket => renderTicket(ticket))
+    const dispDoneTickets = doneTickets.map(ticket => renderTicket(ticket))
+    const dispCancelledTickets = cancelledTickets.map(ticket => renderTicket(ticket))
 
     return (
         <div className="StatusPage">
@@ -116,6 +98,7 @@ export function Status({tickets, byPriority, byTitle}){
               </div>
             </div>
             <ul>
+              {dispDoneTickets}
             </ul>
           </div>
             
@@ -150,6 +133,7 @@ export function Status({tickets, byPriority, byTitle}){
 
             </div>
             <ul>
+              {dispCancelledTickets}
             </ul>
           </div>
 

@@ -32,6 +32,13 @@ function App() {
         console.log(users)
 
       });
+    
+    setShowStatus(true)
+    setShowUser(false)
+    setShowPriority(false)
+    setByPriority(true)
+    setByTitle(false)
+    
   }, []); 
 
   // Set the value of the SETTERS after refreshing the page

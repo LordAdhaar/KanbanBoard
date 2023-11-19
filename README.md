@@ -1,6 +1,6 @@
 # Interactive Kanban Board 
 
-Live Link :
+Live Link : https://heroic-cranachan-95ae63.netlify.app/
 
 ## How To Run This Project Locally 
 
@@ -11,7 +11,6 @@ Live Link :
 2. Install NPM packages
    ```sh
    npm install
-   ```
    ```
 3. Build an app
    ```sh
